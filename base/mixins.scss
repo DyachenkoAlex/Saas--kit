@@ -1,0 +1,22 @@
+@mixin adaptiv-font1($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $minWidth;
+    font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - $minWidth) / #{$maxWidth}));
+};
+
+@mixin adaptiv-font2($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $addMobSize: $addSize + $addSize * 0.7;
+    @media (max-width: 767px) {
+        font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - $minWidth) / #{$maxWidth}));
+    }
+    @media (max-width: 767px) {
+        font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw) / #{$maxWidth}));
+    }
+};
+
+@mixin adaptive-value($property, $startSize, $minSize, $maxWidth, $minWidth) {
+    $addSize: $startSize - $minSize;
+    $valueWidth: $maxWidth - $minWidth;
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$valueWidth}));
+};
